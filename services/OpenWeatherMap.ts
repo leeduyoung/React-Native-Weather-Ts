@@ -5,7 +5,8 @@ function zipUrl(zip: any) {
     return `${API_STEM}q=${zip}&units=imperial&APPID=${WEATHER_API_KEY}`;
 }
 
-function fetchForecast(zip: any) {
+// function fetchForecast(zip: any): Promise<any> {
+function fetchForecast(zip: any): Promise<any> {
     return fetch(zipUrl(zip))
         .then(response => response.json())
         .then(responseJSON => {

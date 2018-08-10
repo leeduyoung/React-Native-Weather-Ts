@@ -24,15 +24,6 @@ export default class Weather extends Component {
     });
   }
 
-  test = () => {
-    console.log('test!!');
-    let zip = "10001";
-    OpenWeatherMap.fetchForecast(zip).then(forecast => {
-      console.log(forecast);
-      this.setState({ forecast: forecast });
-    });
-  }
-
   render() {
     let content = null;
     if(this.state.forecast !== null) {
@@ -46,12 +37,28 @@ export default class Weather extends Component {
     }
     return (
       <View style={styles.container}>
+        {/* <Image
+          source={require("./assets/imgs/flowers.png")}
+          resizeMode="cover",
+          style={styles.backdrop}>
+          <View style={styles.overlay}>
+            <View style={styles.row}>
+              <Text style={styles.mainText}>
+                Current weather for
+              </Text>
+              <View style={styles.zipContainer}>
+                <TextInput style={styles.input} onSubmitEditing={this._handleTextChange} />
+              </View>
+            </View>
+
+          </View>
+
+        </Image> */}
         <Text style={styles.welcome}>
           You input {this.state.zip}
         </Text>
         {content}
-        <TextInput style={styles.input} onSubmitEditing={this._handleTextChange} />
-        <Button title="TEST" onPress={this.test} />
+        <TextInput style={styles.input} onSubmitEditing={event => this._handleTextChange(event)} />
       </View>
     )
   }
@@ -72,6 +79,9 @@ const styles = StyleSheet.create({
   input: {
     fontSize: 20,
     borderWidth: 2,
+    padding: 2,
     height: 40,
+    width: 100,
+    textAlign: "center",
   },
 });
